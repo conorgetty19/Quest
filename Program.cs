@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 // Every class in the program is defined within the "Quest" namespace
 // Classes within the same namespace refer to one another without a "using" statement
@@ -32,6 +33,8 @@ namespace Quest
 ",
                 4, 20
             );
+            Challenge nameThineself = new Challenge("What is my name? 1) Merlin 2) NK ", 1, 10);
+            Challenge seeker = new Challenge("What do I seek? 1) BWILAs 2) A pillow", 1, 20);
             //bool to play again or not
             bool playAgain;
 
@@ -72,11 +75,17 @@ namespace Quest
                 theAnswer,
                 whatSecond,
                 guessRandom,
-                favoriteBeatle
+                favoriteBeatle,
+                nameThineself,
+                seeker
             };
 
-                // Loop through all the challenges and subject the Adventurer to them
-                foreach (Challenge challenge in challenges)
+                //create list of five random challenges
+                Random random = new Random();
+                List<Challenge> randomChallenges = challenges.OrderBy(x => random.Next()).Take(5).ToList();
+
+                // Loop through the five challenges and subject the Adventurer to them
+                foreach (Challenge challenge in randomChallenges)
                 {
                     challenge.RunChallenge(theAdventurer);
                 }
