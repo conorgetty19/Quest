@@ -38,38 +38,36 @@ namespace Quest
             //bool to play again or not
             bool playAgain;
 
-            do
-            {
-                // "Awesomeness" is like our Adventurer's current "score"
-                // A higher Awesomeness is better
+            // "Awesomeness" is like our Adventurer's current "score"
+            // A higher Awesomeness is better
 
-                // Here we set some reasonable min and max values.
-                //  If an Adventurer has an Awesomeness greater than the max, they are truly awesome
-                //  If an Adventurer has an Awesomeness less than the min, they are terrible
-                int minAwesomeness = 0;
-                int maxAwesomeness = 100;
+            // Here we set some reasonable min and max values.
+            //  If an Adventurer has an Awesomeness greater than the max, they are truly awesome
+            //  If an Adventurer has an Awesomeness less than the min, they are terrible
+            int minAwesomeness = 0;
+            int maxAwesomeness = 100;
 
-                // Make a new "Adventurer" object using the "Adventurer" class
-                //Adventurer theAdventurer = new Adventurer("Jack");
-                //prompt user for their name
-                Console.Write("What is your name, weary traveller? ");
-                //create robe for adventurer
-                Robe adventurersRobe = new Robe();
-                adventurersRobe.Colors = new List<string> { "red", "yellow", "blue" };
-                adventurersRobe.Length = 20;
-                //create a hat for the adventurer
-                Hat adventurersHat = new Hat();
-                adventurersHat.ShininessLevel = 10;
-                //create a new adventurer with the users first name, a robe, and a hat
-                string name = Console.ReadLine();
-                Adventurer theAdventurer = new Adventurer(name, adventurersRobe, adventurersHat);
+            // Make a new "Adventurer" object using the "Adventurer" class
+            //Adventurer theAdventurer = new Adventurer("Jack");
+            //prompt user for their name
+            Console.Write("What is your name, weary traveller? ");
+            //create robe for adventurer
+            Robe adventurersRobe = new Robe();
+            adventurersRobe.Colors = new List<string> { "red", "yellow", "blue" };
+            adventurersRobe.Length = 20;
+            //create a hat for the adventurer
+            Hat adventurersHat = new Hat();
+            adventurersHat.ShininessLevel = 10;
+            //create a new adventurer with the users first name, a robe, and a hat
+            string name = Console.ReadLine();
+            Adventurer theAdventurer = new Adventurer(name, adventurersRobe, adventurersHat);
 
-                //create a prize!
-                Prize adventurersPrize = new Prize("A maiden!");
+            //create a prize!
+            Prize adventurersPrize = new Prize("A maiden!");
 
-                // A list of challenges for the Adventurer to complete
-                // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-                List<Challenge> challenges = new List<Challenge>()
+            // A list of challenges for the Adventurer to complete
+            // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
+            List<Challenge> challenges = new List<Challenge>()
             {
                 twoPlusTwo,
                 theAnswer,
@@ -80,7 +78,9 @@ namespace Quest
                 seeker
             };
 
-                //create list of five random challenges
+            //create list of five random challenges
+            do
+            {
                 Random random = new Random();
                 List<Challenge> randomChallenges = challenges.OrderBy(x => random.Next()).Take(5).ToList();
 
@@ -105,6 +105,10 @@ namespace Quest
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
                 adventurersPrize.ShowPrize(theAdventurer);
+                // Update awesomeness for the next quest
+                int awesomenessIncrease = Challenge.TotalSuccessfulChallenges * 10;
+                theAdventurer.Awesomeness = 50 + awesomenessIncrease;
+                Challenge.ResetSuccessfulChallenges();
                 Console.Write("Would ye like to play again for the fate of ye soule? (y/n): ");
                 string playAgainInput = Console.ReadLine();
                 playAgain = (playAgainInput.ToLower() == "y");

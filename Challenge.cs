@@ -12,6 +12,14 @@ namespace Quest
         private int _correctAnswer;
         private int _awesomenessChange;
 
+        // Static variable to keep track of total successful challenges
+        private static int totalSuccessfulChallenges = 0;
+
+        // Property to access total successful challenges
+        public static int TotalSuccessfulChallenges
+        {
+            get { return totalSuccessfulChallenges; }
+        }
 
         // A constructor for the Challenge
         // We can tell it's a constructor because it has the same name as the class 
@@ -41,6 +49,7 @@ namespace Quest
 
                 // Note how we access an Adventurer object's property
                 adventurer.Awesomeness += _awesomenessChange;
+                totalSuccessfulChallenges++;
             }
             else
             {
@@ -51,6 +60,11 @@ namespace Quest
             // Note how we call an Adventurer object's method
             Console.WriteLine(adventurer.GetAdventurerStatus());
             Console.WriteLine();
+        }
+
+        public static void ResetSuccessfulChallenges()
+        {
+            totalSuccessfulChallenges = 0;
         }
     }
 }
