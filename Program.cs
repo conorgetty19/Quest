@@ -49,7 +49,7 @@ namespace Quest
                 // Make a new "Adventurer" object using the "Adventurer" class
                 //Adventurer theAdventurer = new Adventurer("Jack");
                 //prompt user for their name
-                Console.Write("ARRRRRRG. What be ye name? ");
+                Console.Write("What is your name, weary traveller? ");
                 //create robe for adventurer
                 Robe adventurersRobe = new Robe();
                 adventurersRobe.Colors = new List<string> { "red", "yellow", "blue" };
@@ -61,6 +61,8 @@ namespace Quest
                 string name = Console.ReadLine();
                 Adventurer theAdventurer = new Adventurer(name, adventurersRobe, adventurersHat);
 
+                //create a prize!
+                Prize adventurersPrize = new Prize("A maiden!");
 
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
@@ -93,7 +95,8 @@ namespace Quest
                 {
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
-                Console.Write("Would ye like to play again for ye soule? (y/n): ");
+                adventurersPrize.ShowPrize(theAdventurer);
+                Console.Write("Would ye like to play again for the fate of ye soule? (y/n): ");
                 string playAgainInput = Console.ReadLine();
                 playAgain = (playAgainInput.ToLower() == "y");
             }
