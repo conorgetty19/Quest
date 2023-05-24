@@ -54,9 +54,12 @@ namespace Quest
                 Robe adventurersRobe = new Robe();
                 adventurersRobe.Colors = new List<string> { "red", "yellow", "blue" };
                 adventurersRobe.Length = 20;
-                //create a new adventurer with the users first name and a robe
+                //create a hat for the adventurer
+                Hat adventurersHat = new Hat();
+                adventurersHat.ShininessLevel = 10;
+                //create a new adventurer with the users first name, a robe, and a hat
                 string name = Console.ReadLine();
-                Adventurer theAdventurer = new Adventurer(name, adventurersRobe);
+                Adventurer theAdventurer = new Adventurer(name, adventurersRobe, adventurersHat);
 
 
                 // A list of challenges for the Adventurer to complete
